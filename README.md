@@ -1,4 +1,4 @@
-# Project Name
+# Central Heating Controller
 
 ## Description
 This project is an Arduino-based system for managing heating, hot water, and other functionalities. It includes OTA updates, WiFi connectivity, MQTT communication, and integration with Home Assistant.
