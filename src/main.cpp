@@ -57,7 +57,6 @@ enum TimeOfDay {
   EVENING
 };
 TimeOfDay timeOfDay = EVENING;
-unsigned long cTime = 0;
 unsigned long lastSendTime = 0;
 float daytime = 0.0;
 float morningStart = 6.0;
@@ -488,11 +487,9 @@ void manageDayAndTime() {
     lastTimeUpdate = timeClient.getEpochTime();
   }
   if (lastTimeUpdate > 0) {
-    cTime = getTime();
     dayOfWeek = timeClient.getDay();
-    //timeString = getTimeString(getTime());
-    timeString = String(cTime);
-    float hours = hour(cTime) + minute(cTime) / 60;
+    timeString = getTimeString(getTime());
+    float hours = hour(getTime()) + minute(getTime()) / 60;
     timeOfDay = NIGHT;
     if (hours >= morningStart) timeOfDay = MORNING;
     if (hours >= dayStart) timeOfDay = DAY;
@@ -610,12 +607,15 @@ void showSplash() {
 }
 
 void showMain() {
+  String ipStr = "not connected";
+  if(WiFi.status() == WL_CONNECTED){
+  ipStr =WiFi.localIP().toString();
+  }
+  //lcd.clear();
   //1st row
-  lcd.setCursor(11, 0);
-  lcd.print(hour(cTime));
-  lcd.print(":");
-  if (minute(cTime) < 10) lcd.print("0");
-  lcd.print(minute(cTime));
+  lcd.setCursor(0, 0);
+  lcd.print(ipStr);
+
   lcd.setCursor(17, 0);
   lcd.print(wifiRSSI);
 
@@ -666,9 +666,8 @@ void showMain() {
   lcd.print("    ");
   lcd.setCursor(12, 3);
   lcd.print(String(outsideTemp, 0));
-  //  lcd.setCursor(15, 3);
-  //  lcd.print("S");
-  //  lcd.print("    ");
+  lcd.setCursor(15, 3);
+  lcd.print(timeString);
   delay(150);
 }
 
