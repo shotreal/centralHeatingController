@@ -94,7 +94,7 @@ float dhwTempNightSP = 20.0;
 float dhwTempMorningSP = 40.0;
 float dhwTempEveningSP = 46.0;
 float dhwTempDaySP = 35.0;
-float dhwLegionellenSP = 72.0;
+float dhwLegionellenSP = 70.0; //the actual temperature is higher anyway
 float dhwTempBoostSP = 50.0;
 
 // Flags for forcing specific temperatures
@@ -427,9 +427,9 @@ String getTimeString(time_t currentTime) {
 }
 
 void manageHeating() {
+  enableCentralHeating = false;
   if (enableHeatingProgram){
     if (heatingMode == OTemp_AUTO) {
-      enableCentralHeating = false;
       if (outsideTemp < heatingThreshold) enableCentralHeating = true;
       //boilerTempSP     = steepness * outsideTemp + zeroSetpoint; //Heizungskennlinie
       //    y = 39.42857 - 0.7885714 -0.01828571^2 -0.001371429^3
