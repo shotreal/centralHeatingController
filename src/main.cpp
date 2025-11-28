@@ -473,6 +473,11 @@ void manageHotWater() {
   else if (enableHotWaterProgram && hotWaterMode == MANUAL) {
     enableHotWater = true;
     dhwTempSP = dhwTempBoostSP;
+    // Disable boost if boost temperature is reached
+    if (dhwTemp >= dhwTempBoostSP) {
+      hotWaterMode = AUTOMATIC;
+      boostSwitchHotWater.setState(false); // Update HA switch
+    }
   }
   
   if (enableLegionellaProgram && dayOfWeek == legionellaProgramDay && timeOfDay==EVENING) {
