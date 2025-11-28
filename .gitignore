@@ -4,3 +4,5 @@
 .vscode/launch.json
 .vscode/ipch
 src/credentials.h
+platformio.ini
+src/credentials.h
