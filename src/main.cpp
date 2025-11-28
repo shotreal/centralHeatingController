@@ -253,28 +253,28 @@ void onSetBoilerBoostTempCommand(HANumeric number, HANumber* sender) {
 //Callback for setting morning begin
 void onSMorningBegin(int8_t index, HASelect* sender) {
   int startHour = 4;  //Select stars at 4:00 -> When updating also update udpateHA function!
-  morningStart = (index / 2) + startHour;
-  sender->setState(round((daytime - startHour) * 2));  // report the selected option back to the HA panel
+  morningStart = (index *0.5) + startHour;
+  sender->setState(round((morningStart - startHour) * 2));  // report the selected option back to the HA panel
 }
 // Callback for setting day begin
 void onSDayBegin(int8_t index, HASelect* sender) {
   int startHour = 8;  // Select starts at 8:00 -> When updating also update udpateHA function!
-  dayStart = (index / 2) + startHour;
-  sender->setState(round((daytime - startHour) * 2));  // Report the selected option back to the HA panel
+  dayStart = (index *0.5) + startHour;
+  sender->setState(round((dayStart - startHour) * 2));  // Report the selected option back to the HA panel
 }
 
 // Callback for setting afternoon begin
 void onSAfternoonBegin(int8_t index, HASelect* sender) {
   int startHour = 15;  // Select starts at 12:00 -> When updating also update udpateHA function!
-  afternoonStart = (index / 2) + startHour;
-  sender->setState(round((daytime - startHour) * 2));  // Report the selected option back to the HA panel
+  afternoonStart = (index *0.5) + startHour;
+  sender->setState(round((afternoonStart - startHour) * 2));  // Report the selected option back to the HA panel
 }
 
 // Callback for setting night begin
 void onSNightBegin(int8_t index, HASelect* sender) {
   int startHour = 18;  // Select starts at 15:00 -> When updating also update udpateHA function!
-  nightStart = (index / 2) + startHour;
-  sender->setState(round((daytime - startHour) * 2));  // Report the selected option back to the HA panel
+  nightStart = (index *0.5) + startHour;
+  sender->setState(round((nightStart - startHour) * 2));  // Report the selected option back to the HA panel
 }
 
 // Callback for setting legionella Day
