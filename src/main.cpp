@@ -449,9 +449,9 @@ void manageHeating() {
   }
 }
 void manageHotWater() {
-
+  enableHotWater = false;
+  
   if (enableHotWaterProgram && hotWaterMode == AUTOMATIC) {
-    enableHotWater = false;
     dhwTempSP = dhwTempNightSP;
     if (timeOfDay == MORNING) {
       enableHotWater = true;
